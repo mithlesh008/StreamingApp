@@ -2,6 +2,9 @@
 
 Stream premium video content, host live watch parties, and manage your catalogue with a modern microservice architecture. The platform now ships with a production-ready admin portal, real-time chat, S3-backed adaptive streaming, and a redesigned cinematic frontend experience.
 
+## Helm Chart is available for kubernetes here:
+[StreamingApp Helm Chart](https://github.com/mithlesh008/StreamingApp/tree/main/streamingapp)
+
 ## Architecture
 
 | Service | Port | Description |
