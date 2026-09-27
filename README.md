@@ -133,9 +133,12 @@ cd frontend && npm start
 Automated tests are not yet included. Recommended smoke checks:
 
 1. Register and log in through the web UI.
-2. Upload a small video + thumbnail via the admin dashboard (requires valid S3 credentials).
-3. Confirm playback from the browse page and verify that chat messages broadcast between multiple browser tabs.
 
-## License
+<img width="1918" height="986" alt="011-Verify-application-is-running" src="https://github.com/user-attachments/assets/1f572443-f4cf-45cc-9b10-b9751354a604" />
 
-MIT © StreamFlix Team
+<img width="1922" height="575" alt="014-login-successful" src="https://github.com/user-attachments/assets/29c12aac-f184-41f8-843f-323853de1e58" />
+
+<img width="1448" height="733" alt="013-Registration-Successful" src="https://github.com/user-attachments/assets/f59f6b15-8a17-4348-b277-33317302f4cc" />
+
+3. Upload a small video + thumbnail via the admin dashboard (requires valid S3 credentials).
+4. Confirm playback from the browse page and verify that chat messages broadcast between multiple browser tabs.
