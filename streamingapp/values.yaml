@@ -1,0 +1,16 @@
+# Portable chart defaults. Environment-specific image names and hosts belong in values-k3d.yaml.
+imagePullSecrets:
+  - name: ecr-pull-secret
+services:
+  # The auth backend serves /api/login and /api/register; Ingress exposes /api to it.
+  auth: {image: REPLACE_ME/streaming-auth, tag: "1.0.0", replicas: 2, port: 3001, containerPort: 3001, servicePort: 3001, path: /api, probePath: /health}
+  streaming: {image: REPLACE_ME/streaming-stream, tag: "1.0.0", replicas: 2, port: 3002, containerPort: 3002, servicePort: 3002, path: /api/streaming, probePath: /api/health}
+  admin: {image: REPLACE_ME/streaming-admin, tag: "1.0.0", replicas: 2, port: 3003, containerPort: 3003, servicePort: 3003, path: /api/admin, probePath: /api/health}
+  chat: {image: REPLACE_ME/streaming-chat, tag: "1.0.0", replicas: 2, port: 3004, containerPort: 3004, servicePort: 3004, path: /api/chat, probePath: /api/health}
+  frontend: {image: REPLACE_ME/streaming-frontend, tag: "1.0.0", replicas: 2, port: 80, containerPort: 80, servicePort: 80, path: /, probePath: /}
+config:
+  awsRegion: us-east-1
+  clientUrls: http://streamingapp.local:8080
+  mongoDatabase: streamingapp
+ingress: {enabled: true, className: nginx, host: streamingapp.local, tls: false}
+mongo: {image: mongo:7, storageSize: 5Gi, replicas: 1}

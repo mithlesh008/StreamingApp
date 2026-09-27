@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: {name: {{ .Release.Name }}-config}
+data:
+  CLIENT_URLS: {{ .Values.config.clientUrls | quote }}
+  AWS_REGION: {{ .Values.config.awsRegion | quote }}
+  MONGO_URI: {{ printf "mongodb://mongo.%s.svc:27017/%s" .Release.Namespace .Values.config.mongoDatabase | quote }}
+---
+apiVersion: v1
+kind: Secret
+metadata: {name: {{ .Release.Name }}-secret}
+type: Opaque
+stringData:
+  JWT_SECRET: {{ .Values.secrets.jwtSecret | quote }}
+  AWS_ACCESS_KEY_ID: {{ .Values.secrets.awsAccessKeyId | quote }}
+  AWS_SECRET_ACCESS_KEY: {{ .Values.secrets.awsSecretAccessKey | quote }}

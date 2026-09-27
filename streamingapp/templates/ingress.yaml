@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  rules:
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      # Auth service mounts its routes at /api/login and /api/register.
+      - {path: /api, pathType: Prefix, backend: {service: {name: {{ .Release.Name }}-auth, port: {number: 3001}}}}
+      - {path: /api/streaming, pathType: Prefix, backend: {service: {name: {{ .Release.Name }}-streaming, port: {number: 3002}}}}
+      - {path: /api/admin, pathType: Prefix, backend: {service: {name: {{ .Release.Name }}-admin, port: {number: 3003}}}}
+      - {path: /api/chat, pathType: Prefix, backend: {service: {name: {{ .Release.Name }}-chat, port: {number: 3004}}}}
+      - {path: /socket.io, pathType: Prefix, backend: {service: {name: {{ .Release.Name }}-chat, port: {number: 3004}}}}
+      - {path: /, pathType: Prefix, backend: {service: {name: {{ .Release.Name }}-frontend, port: {number: 80}}}}

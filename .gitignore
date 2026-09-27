@@ -130,3 +130,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+streamingapp/values-k3d.yaml
+streamingapp/values-secrets.yaml
